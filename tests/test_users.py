@@ -1,4 +1,4 @@
-from schemas import UserListSchema,UserSchema
+from userschemas import UserListSchema,UserSchema
 
 def test_get_all_users(api_client, base_url):
     response = api_client.get(f"{base_url}/users")
