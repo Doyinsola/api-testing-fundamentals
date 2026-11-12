@@ -44,3 +44,10 @@ def test_delete_post(api_client, base_url):
     post_id = 4
     response = api_client.delete(f"{base_url}/posts/{post_id}")
     assert response.status_code == 200
+
+def test_post_query_parameters(api_client, base_url):
+    user_id=1
+    response = api_client.get(f"{base_url}/posts?userId={user_id}")
+    assert response.status_code == 200
+    posts =PostsListSchema.validate_python(response.json())
+    assert all(post.userId == user_id for post in posts)
